@@ -1,0 +1,14 @@
+KosanQu.cpp : Tugas Besar Grafkom
+
+Diki Taurens Sia 	10108396
+Sopyan		 	10108400
+Andika Tanjung   	10108405
+M. Arif Ansyari  	10108407
+
+
+
+
+Library yang digunakan:
+#include <GL\glut.h>
+#include <GL\GL.h>
+#include <GL\GLU.h>
