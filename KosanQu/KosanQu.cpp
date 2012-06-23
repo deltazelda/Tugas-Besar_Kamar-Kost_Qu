@@ -151,6 +151,21 @@ Image * loadTexture3() {
 	return image3;
 }
 
+Image * loadTexture4() {
+	Image *image4;
+	// alokasi memmory untuk tekstur
+	image4 = (Image *) malloc(sizeof(Image));
+	if (image4 == NULL) {
+		printf("Error allocating space for image");
+		exit(0);
+	}
+	//pic.bmp is a 64x64 picture
+	if (!ImageLoad("olimpik.bmp", image4)) {
+		exit(1);
+	}
+	return image4;
+}
+
 void myinit(void) {
 	glClearColor(0.5, 0.5, 0.5, 0.0);
 	glEnable(GL_DEPTH_TEST);
@@ -159,6 +174,7 @@ void myinit(void) {
 	Image *image1 = loadTexture();
 	Image *image2 = loadTexture2();
 	Image *image3 = loadTexture3();
+	Image *image4 = loadTexture4();
 
 	if (image1 == NULL) {
 		printf("Image was not returned from loadTexture\n");
@@ -169,6 +185,10 @@ void myinit(void) {
 		exit(0);
 	}
 	if (image3 == NULL) {
+		printf("Image was not returned from loadTexture\n");
+		exit(0);
+	}
+	if (image4 == NULL) {
 		printf("Image was not returned from loadTexture\n");
 		exit(0);
 	}
@@ -204,6 +224,17 @@ void myinit(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image3->sizeX, image3->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image3->data);
+
+	//tekstur olimpik
+	//binding texture untuk membuat texture 2D
+	glBindTexture(GL_TEXTURE_2D, texture[4]);
+	//menyesuaikan ukuran textur ketika image lebih besar dari texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //
+	//menyesuaikan ukuran textur ketika image lebih kecil dari texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image4->sizeX, image4->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image4->data);
+
 
 	glEnable(GL_TEXTURE_2D);
 
@@ -461,7 +492,7 @@ void display(void) {
 
 	//pintu
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glTranslated(-9,0,0);
 		glRotated(rPintu,0,1,0);
 		glTranslated(9,0,0);
@@ -472,7 +503,7 @@ void display(void) {
 
 	//jendela kiri
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glTranslated(-1,7,-21);
 		glRotated(jKiri,0,1,0);
 		glTranslated(1,-7,21);
@@ -483,7 +514,7 @@ void display(void) {
 
 	//jendela kanan
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glTranslated(7,7,-21);
 		glRotated(jKanan,0,1,0);
 		glTranslated(-7,-7,21);
@@ -538,14 +569,14 @@ void display(void) {
 
 	//kasur
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glBegin(GL_QUADS);
 			dinding(9,2,-4,17,3,-20);
 		glEnd();
 	glPopMatrix();
 	//tiang kasur
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glBegin(GL_QUADS);
 			dinding(16.2,0,-19,17,2,-20);
 			dinding(16.2,0,-4,17,2,-5);
@@ -555,7 +586,7 @@ void display(void) {
 	glPopMatrix();
 	//bantal
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glBegin(GL_QUADS);
 			dinding(10,3,-17.5,16,4,-19.7);
 		glEnd();
@@ -610,6 +641,32 @@ void display(void) {
 		gluQuadricDrawStyle(qobj, GLU_FLAT);
 		gluCylinder(qobj, 0.1, 0.1, 7, 8,8);//silinder dengan diameter 0.1
 	glPopMatrix();
+	
+	//meja
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glTranslated(9, -3 ,-16.7);
+		glBegin(GL_QUADS);
+		dinding(-10,3,0,-9.5,5,0.3);
+		dinding(-2.5,3,0,-2,5,0.3);
+		dinding(-10,3,-3,-9.5,5,-3.3);
+		dinding(-2.5,3,-3,-2,5,-3.3);
+		dinding(-10,5,0.3,-2,5.3,-3.3);
+		glEnd();
+	glPopMatrix();  
+
+
+	//laptop
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glTranslated(11, -0.65 ,-18.7);
+		glBegin(GL_QUADS);
+		dinding(-10,3,0,-6.3,5.5,0.3);
+		dinding(-10,3,0,-6.3,3.3,2.5);
+
+		glEnd();
+	glPopMatrix(); 
+
 
 	glutSwapBuffers();
 }
