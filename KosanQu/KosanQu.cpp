@@ -137,7 +137,7 @@ Image * loadTexture2() {
 		exit(0);
 	}
 	//pic.bmp is a 64x64 picture
-	if (!ImageLoad("water.bmp", image2)) {
+	if (!ImageLoad("snsd.bmp", image2)) {
 		exit(1);
 	}
 	return image2;
@@ -172,6 +172,8 @@ Image * loadTexture4() {
 	}
 	return image4;
 }
+
+
 
 void myinit(void) {
 	glClearColor(0.5, 0.5, 0.5, 0.0);
@@ -817,6 +819,27 @@ void display(void) {
 			glVertex3f(13.7,10,-19.5);
 		glEnd();
 	glPopMatrix();
+
+	//poster
+glPushMatrix();	
+glBindTexture(GL_TEXTURE_2D, texture[1]);
+glTranslated(-9.8,7,-12);
+
+
+
+glBegin (GL_QUADS);	
+dinding(1,1,1,1,5,7);
+	/*glTexCoord2f(0.0, 0.0);
+	glVertex3f(1,1,1);
+	glTexCoord2f(1.0, 0.0);
+	glVertex3f(1,5,1);	
+	glTexCoord2f(1.0, 1.0);
+	glVertex3f(1,5,7);	
+	glTexCoord2f(0.0, 1.0);
+	glVertex3f(1,1,7);*/
+glEnd ();
+glPopMatrix();
+
 
 	glutSwapBuffers();
 }

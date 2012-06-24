@@ -1,5 +1,5 @@
-﻿Build started 6/24/2012 6:27:39 PM.
-     1>Project "D:\file dika\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" on node 2 (build target(s)).
+﻿Build started 6/24/2012 8:15:00 PM.
+     1>Project "E:\kuliah\semester 8\Grafkom\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\KosanQu.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -14,8 +14,8 @@
        FinalizeBuildStatus:
          Deleting file "Debug\KosanQu.unsuccessfulbuild".
          Touching "Debug\KosanQu.lastbuildstate".
-     1>Done Building Project "D:\file dika\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" (build target(s)).
+     1>Done Building Project "E:\kuliah\semester 8\Grafkom\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.30
+Time Elapsed 00:00:00.08
