@@ -8,4 +8,4 @@ okeh cep
 naon atuh naon
 
 link adsi
-http://www.mediafire.com/?y28cg88d4nlj9b6
+cek koneksi pull dongks.. :)
