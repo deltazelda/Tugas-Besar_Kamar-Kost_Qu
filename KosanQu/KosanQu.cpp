@@ -12,6 +12,7 @@
 #include <GL\GLU.h>
 #include <math.h>
 
+
 GLuint texture[2];
 
 GLint slices = 16;
@@ -22,6 +23,9 @@ double rotasiVertikal = 60;
 static float ypoz = 0, zpoz = 0, xpoz = 0,a = 5, b = -5,c = -7, rPintu=0,
 			 jKiri=0, jKanan=0, lampu=45, lemari1=0, lemari2=0;
 #define PI 3.141592653589793238462643;
+int x=0;
+int z=0;
+int z2=180;
 struct Image {
 	unsigned long sizeX;
 	unsigned long sizeY;
@@ -396,8 +400,14 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 		//menyalakan dan mematikan lampu
 		case '0':
-		if (lampu==45) lampu=-45;
-		else if(lampu==-45) lampu=45;;
+		if (lampu==45) 
+			{
+				lampu=-45;
+			}
+		else if(lampu==-45) 
+			{
+				lampu=45;
+			}
 		glutPostRedisplay();
 		break;
 	}
@@ -479,6 +489,21 @@ void dinding(float x1,float y1,float z1,float x2,float y2,float z2)
 	glTexCoord2f(0.0, 1.0);
 	glVertex3f(x2,y1,z2);
 }
+
+void timer (int value){
+	if (z <= 360){
+		x = 1;
+		z +=10;
+	}
+	if (z == 360){
+		x = -1;
+		z =0;
+	}
+	
+	glutPostRedisplay();
+	glutTimerFunc(5,timer,0);
+}
+
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -755,6 +780,44 @@ void display(void) {
 		glEnd();
 	glPopMatrix();
 
+	//box kipas
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glTranslated(17,9.75,0);
+		glScalef(0.8,0.4,1);
+		glBegin(GL_QUADS);
+			//belakang
+			dinding(-9,0,-19.7,-2,11.5,-20);
+			//samping kiri
+			dinding(-9,0,-20.7,-8.7,11.5,-19);
+			//samping kanan
+			dinding(-2.3,0,-19.7,-2,11.5,-19);
+			//atas
+			dinding(-9,11.5,-19,-2,11.2,-20);
+			//dasar
+			dinding(-9,0,-19,-2,0.3,-20);
+		glEnd();
+	glPopMatrix();
+	// baling2 kipas
+	glPushMatrix();
+		if(lampu==-45)
+		{
+			glTranslatef(12.7,12,-19.5);
+			glRotatef(z,0,0,1);
+			glTranslatef(-12.7,-12,19.5);
+		}	
+		glBegin (GL_POLYGON);
+			//segitiga atas
+			glVertex3f(12.7,12,-19.5);
+			glVertex3f(11.7,14,-19.5);
+			glVertex3f(13.7,14,-19.5);
+			//segitiga bawah
+			glVertex3f(12.7,12,-19.5);
+			glVertex3f(11.7,10,-19.5);
+			glVertex3f(13.7,10,-19.5);
+		glEnd();
+	glPopMatrix();
+
 	glutSwapBuffers();
 }
 void myReshape(int w, int h) {
@@ -786,6 +849,7 @@ int main(int argc, char** argv) {
 	glutMouseFunc(processMouse); //deteksi interaksi mouse klik
 	//glutMotionFunc(processGerakMouse);  //deteksi pergerakan mouse
 	//glutPassiveMotionFunc(processMouse);  //pergerakan mouse passif
+	glutTimerFunc(1,timer,0);
 	glutMainLoop();
 	return 0;
 }
