@@ -663,11 +663,34 @@ void display(void) {
 		glBegin(GL_QUADS);
 		dinding(-10,3,0,-6.3,5.5,0.3);
 		dinding(-10,3,0,-6.3,3.3,2.5);
-
 		glEnd();
-	glPopMatrix(); 
+		glPopMatrix(); 
 
+	//gagang kiri
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glTranslated(-9,0,-17);
+		glRotated(lemari1,0,1,0);
+		glTranslated(9,0,17);
+		glBegin(GL_QUADS);
+		dinding(-6,5.3,-16.5,-5.8,5.5,-17);
+		dinding(-6,6.5,-16.5,-5.8,6.7,-17);
+		dinding(-6,6.8,-16.3,-5.8,5.2,-16.5);
+		glEnd();
+		glPopMatrix(); 
 
+		//gagang kanan
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glTranslated(-2.5,0,-17);
+		glRotated(lemari2,0,1,0);
+		glTranslated(2.5,0,17);
+		glBegin(GL_QUADS);
+		dinding(-5.2,5.3,-16.5,-5,5.5,-17);
+		dinding(-5.2,6.5,-16.5,-5,6.7,-17);
+		dinding(-5.2,6.8,-16.3,-5,5.2,-16.5);
+		glEnd();
+		glPopMatrix();
 	glutSwapBuffers();
 }
 void myReshape(int w, int h) {
