@@ -17,6 +17,6 @@ Bahasa Pemrograman
 C++
 
 Library yang digunakan:
-#include <GL\glut.h>
-#include <GL\GL.h>
-#include <GL\GLU.h>
+GL\glut.h
+GL\GL.h
+GL\GLU.h
