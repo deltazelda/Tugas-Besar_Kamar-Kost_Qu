@@ -681,6 +681,14 @@ void display(void) {
 		glEnd();
 	glPopMatrix();
 
+	//guling
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glBegin(GL_QUADS);
+			dinding(12,3,-15.5,13,4,-6.7);
+		glEnd();
+	glPopMatrix();
+
 	//lemari
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[3]);
