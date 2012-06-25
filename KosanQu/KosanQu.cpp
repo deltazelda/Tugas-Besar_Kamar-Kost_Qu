@@ -122,7 +122,7 @@ Image * loadTexture() {
 		exit(0);
 	}
 	//pic.bmp is a 64x64 picture
-	if (!ImageLoad("wood.bmp", image1)) {
+	if (!ImageLoad("water.bmp", image1)) {
 		exit(1);
 	}
 	return image1;
@@ -152,7 +152,7 @@ Image * loadTexture3() {
 		exit(0);
 	}
 	//pic.bmp is a 64x64 picture
-	if (!ImageLoad("garis.bmp", image3)) {
+	if (!ImageLoad("jamdinding.bmp", image3)) {
 		exit(1);
 	}
 	return image3;
@@ -224,6 +224,7 @@ void myinit(void) {
 
 	// Generate texture/ membuat texture
 	
+	glGenTextures(9,texture);
 
 	//binding texture untuk membuat texture 2D
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -264,7 +265,7 @@ void myinit(void) {
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image4->sizeX, image4->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image4->data);
 
-	//tekstur olimpik
+	//tekstur hitam
 	//binding texture untuk membuat texture 2D
 	glBindTexture(GL_TEXTURE_2D, texture[6]);
 	//menyesuaikan ukuran textur ketika image lebih besar dari texture
@@ -549,7 +550,7 @@ void display(void) {
 
 	//dinding kiri
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
 			dinding(-10,0,0,-9,15,-20);
 		glEnd();
@@ -557,7 +558,7 @@ void display(void) {
 
 	//dinding kanan
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
 			dinding(17,0,0,18,15,-20);
 		glEnd();
@@ -565,7 +566,7 @@ void display(void) {
 
 	//dinding belakang
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		//bawah
 		glBegin(GL_QUADS);
 			dinding(-10,0,-20,18,7,-21);
@@ -586,7 +587,7 @@ void display(void) {
 
 	//dinding depan
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
 			dinding(-3,0,0,18,15,-1);
 		glEnd();
@@ -594,7 +595,7 @@ void display(void) {
 
 	//lorong pintu
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
 			dinding(-9,13,0,-3,15,-1);
 			glTexCoord2f(0.0, 0.0);
@@ -610,7 +611,7 @@ void display(void) {
 
 	//pintu
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(-9,0,0);
 		glRotated(rPintu,0,1,0);
 		glTranslated(9,0,0);
@@ -643,7 +644,7 @@ void display(void) {
 
 	//lantai
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0, 0.0);
 			glVertex3d(-9,0,-1);
@@ -658,7 +659,7 @@ void display(void) {
 
 	//atap
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
 			glTexCoord2f(0.0, 0.0);
 			glVertex3d(-9,15,-1);
@@ -687,7 +688,7 @@ void display(void) {
 
 	//kasur
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_QUADS);
 			dinding(9,2,-4,17,3,-20);
 		glEnd();
@@ -704,7 +705,7 @@ void display(void) {
 	glPopMatrix();
 	//bantal
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_QUADS);
 			dinding(10,3,-17.5,16,4,-19.7);
 		glEnd();
@@ -712,7 +713,7 @@ void display(void) {
 
 	//guling
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_QUADS);
 			dinding(12,3,-15.5,13,4,-6.7);
 		glEnd();
@@ -720,7 +721,7 @@ void display(void) {
 
 	//lemari
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glBegin(GL_QUADS);
 			//belakang
 			dinding(-9,0,-19.7,-2,11.5,-20);
@@ -738,7 +739,7 @@ void display(void) {
 	glPopMatrix();
 	//pintu lemari kiri
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glTranslated(-9,0,-17);
 		glRotated(lemari1,0,1,0);
 		glTranslated(9,0,17);
@@ -749,7 +750,7 @@ void display(void) {
 	glPopMatrix();
 	//pintu lemari kanan
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glTranslated(-2.5,0,-17);
 		glRotated(lemari2,0,1,0);
 		glTranslated(2.5,0,17);
@@ -796,14 +797,12 @@ void display(void) {
 		glVertex3f(-9.7,5.1,-0.1);
 		dinding(-10,2,0,-5,5.5,0.3);
 		dinding(-10,3,0,-6.3,3.3,1);
-		
-
 		glEnd();
 	glPopMatrix();
 
 	//laptop
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(11, -0.65 ,-18.7);
 		glBegin(GL_QUADS);
 		dinding(-10,3,0,-6.3,5.5,0.3);
@@ -814,7 +813,7 @@ void display(void) {
 
 //gagang kiri
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(-9,0,-17);
 		glRotated(lemari1,0,1,0);
 		glTranslated(9,0,17);
@@ -827,7 +826,7 @@ void display(void) {
 
 		//gagang kanan
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(-2.5,0,-17);
 		glRotated(lemari2,0,1,0);
 		glTranslated(2.5,0,17);
@@ -840,7 +839,7 @@ void display(void) {
 
 	//box kipas
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(17,9.75,0);
 		glScalef(0.8,0.4,1);
 		glBegin(GL_QUADS);
@@ -881,27 +880,30 @@ void display(void) {
 		glBindTexture(GL_TEXTURE_2D, texture[1]);
 		glTranslated(-9.8,7,-12);
 		glBegin (GL_QUADS);	
-			dinding(1,1,1,1,5,7);
+		dinding(1,1,1,1,5,7);
 		glEnd ();
 	glPopMatrix();
 
 
 	//jam
+	
 		float alpha, radius, cx, cy;
 		 cx=5;
 		 cy=5;
 		 alpha = 0;
 		 radius = 1;
+		 glPushMatrix();	
 		 glTranslated(-8.8,6,-8);
 		 glRotated(90,0,1,0);
- 
+		 glBindTexture(GL_TEXTURE_2D, texture[0]);
 		 glBegin(GL_POLYGON);
 		 {
 		  for(float i=0; i<=360; i++)
 		  {
 		   alpha+=1;
-		   glBindTexture(GL_TEXTURE_2D, texture[5]);
+		   glTexCoord2f(1.0, 1.0);
 		   glVertex2f(radius * cos (alpha/180 * 3.1415) + cx, radius * sin(alpha/180 * 3.1415) + cy);
+		   glTexCoord2f(1.0, 1.0);
 		  }
 		 }
 		 glEnd();
