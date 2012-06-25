@@ -17,22 +17,17 @@ GLuint texture[2];
 
 GLint slices = 16;
 GLint stacks = 16;
-int putaranKamera = TRUE;
-int arahKamera = 1;
-double rotasiVertikal = 60;
+
 static float ypoz = 0, zpoz = 0, xpoz = 0,a = 5, b = -5,c = -7, rPintu=0,
 			 jKiri=0, jKanan=0, lampu=45, lemari1=0, lemari2=0;
-#define PI 3.141592653589793238462643;
-int x=0;
 int z=0;
-int z2=180;
+
 struct Image {
 	unsigned long sizeX;
 	unsigned long sizeY;
 	char *data;
 };
 typedef struct Image Image; //struktur data untuk
-
 
 //ukuran image #bisa di set sesuai kebutuhan
 #define checkImageWidth 164
@@ -172,6 +167,7 @@ Image * loadTexture4() {
 	}
 	return image4;
 }
+
 Image * loadTexture6() {
 	Image *image6;
 	// alokasi memmory untuk tekstur
@@ -186,7 +182,6 @@ Image * loadTexture6() {
 	}
 	return image6;
 }
-
 
 void myinit(void) {
 	glClearColor(0.5, 0.5, 0.5, 0.0);
@@ -319,6 +314,7 @@ void processMouse(int button, int state, int x, int y)
         }
     }
 }
+
 void keyboard(unsigned char key, int x, int y)
 {
 	switch (key)
@@ -444,25 +440,6 @@ void keyboard(unsigned char key, int x, int y)
 		break;
 	}
 }
-void kamera(int pickmode, int x, int y) {
-	static double theta = 0;
-	GLint viewport[4];
-
-	/* Camera setup */
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	if (pickmode == TRUE) {
-		glGetIntegerv(GL_VIEWPORT, viewport); /* Get the viewport bounds */
-		gluPickMatrix(x, viewport[3] - y, 3.0, 3.0, viewport);
-	}
-	gluPerspective(70.0,1.0,0.1, 1000.0); /* near and far  */
-
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	//gluLookAt(10 * cos(theta * PI / 180) * sin(rotasiVertikal * PI / 180), 3 * cos(rotasiVertikal * PI / 180), 4 * sin(theta * PI / 180) * sin(rotasiVertikal * PI / 180), 0.0, 0.0, 0.0,0.0, 1.0, 0.0); /* Up       */
-	if (putaranKamera)
-		theta += (arahKamera * 1);
-}
 
 void dinding(float x1,float y1,float z1,float x2,float y2,float z2)
 {
@@ -524,14 +501,11 @@ void dinding(float x1,float y1,float z1,float x2,float y2,float z2)
 
 void timer (int value){
 	if (z <= 360){
-		x = 1;
 		z +=10;
 	}
 	if (z == 360){
-		x = -1;
 		z =0;
 	}
-	
 	glutPostRedisplay();
 	glutTimerFunc(5,timer,0);
 }
@@ -690,32 +664,38 @@ void display(void) {
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_QUADS);
-			dinding(9,2,-4,17,3,-20);
+			dinding(9.2,2,-4.2,16.8,3,-19);
 		glEnd();
 	glPopMatrix();
 	//tiang kasur
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[4]);
 		glBegin(GL_QUADS);
-			dinding(16.2,0,-19,17,2,-20);
-			dinding(16.2,0,-4,17,2,-5);
-			dinding(9,0,-19,9.8,2,-20);
-			dinding(9,0,-4,9.8,2,-5);
+			dinding(16.2,0,-19,16.8,1.5,-20);
+			dinding(16.2,0,-4,16.8,1.5,-5);
+			dinding(9,0,-19,9.8,1.5,-20);
+			dinding(9,0,-4,9.8,1.5,-5);
+			//alas
+			dinding(9,1.5,-4,16.8,2,-20);
+			//tempat sandar belakang
+			dinding(9.2,2,-19,16.8,5,-20);
 		glEnd();
 	glPopMatrix();
 	//bantal
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_QUADS);
-			dinding(10,3,-17.5,16,4,-19.7);
+			dinding(9.3,3,-16.5,13,3.5,-18.7);
+			dinding(13.3,3,-16.5,16.5,3.5,-18.7);
 		glEnd();
 	glPopMatrix();
-
-	//guling
+	//selimut
 	glPushMatrix();
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glBegin(GL_QUADS);
-			dinding(12,3,-15.5,13,4,-6.7);
+		dinding(8.8,1,-4.2,9,3.2,-13);
+		dinding(9,3,-4.2,16.8,3.2,-13);
+		dinding(16.8,1,-4.2,17,3.2,-13);
 		glEnd();
 	glPopMatrix();
 
@@ -782,7 +762,7 @@ void display(void) {
 		glEnd();
 	glPopMatrix();
 
-		//tv
+	//tv
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(11, 3 ,-1.5);
@@ -811,7 +791,7 @@ void display(void) {
 		glEnd();
 	glPopMatrix();
 
-//gagang kiri
+	//gagang kiri
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(-9,0,-17);
@@ -824,7 +804,7 @@ void display(void) {
 		glEnd();
 	glPopMatrix();
 
-		//gagang kanan
+	//gagang kanan
 	glPushMatrix();
 		glBindTexture(GL_TEXTURE_2D, texture[6]);
 		glTranslated(-2.5,0,-17);
@@ -885,30 +865,27 @@ void display(void) {
 	glPopMatrix();
 	
 	//jam
-	
-		float alpha, radius, cx, cy;
-		 cx=5;
-		 cy=5;
-		 alpha = 0;
-		 radius = 1;
-		 glPushMatrix();	
-		 glTranslated(-8.8,6,-8);
-		 glRotated(90,0,1,0);
-		 glBindTexture(GL_TEXTURE_2D, texture[0]);
-		 glBegin(GL_POLYGON);
-		 {
-		  for(float i=0; i<=360; i++)
-		  {
-		   alpha+=1;
-		   glTexCoord2f(1.0, 1.0);
-		   glVertex2f(radius * cos (alpha/180 * 3.1415) + cx, radius * sin(alpha/180 * 3.1415) + cy);
-		   glTexCoord2f(1.0, 1.0);
-		  }
-		 }
-		 glEnd();
-		 glPopMatrix();
+	float alpha, radius, cx, cy;
+	cx=5;
+	cy=5;
+	alpha = 0;
+	radius = 1;
+	glPushMatrix();	
+		glTranslated(-8.8,6,-8);
+		glRotated(90,0,1,0);
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glBegin(GL_POLYGON);
+		for(float i=0; i<=360; i++)
+		{
+			alpha+=1;
+			glTexCoord2f(1.0, 1.0);
+			glVertex2f(radius * cos (alpha/180 * 3.1415) + cx, radius * sin(alpha/180 * 3.1415) + cy);
+			glTexCoord2f(1.0, 1.0);
+		}
+		glEnd();
+	glPopMatrix();
 
-		 glutSwapBuffers();
+	glutSwapBuffers();
 }
 void myReshape(int w, int h) {
 	glViewport(0, 0, w, h);
@@ -936,9 +913,7 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(myReshape);
 	glutDisplayFunc(display);
 	glutKeyboardFunc(keyboard);
-	glutMouseFunc(processMouse); //deteksi interaksi mouse klik
-	//glutMotionFunc(processGerakMouse);  //deteksi pergerakan mouse
-	//glutPassiveMotionFunc(processMouse);  //pergerakan mouse passif
+	glutMouseFunc(processMouse); 
 	glutTimerFunc(1,timer,0);
 	glutMainLoop();
 	return 0;
