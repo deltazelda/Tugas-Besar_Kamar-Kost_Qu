@@ -821,24 +821,13 @@ void display(void) {
 	glPopMatrix();
 
 	//poster
-glPushMatrix();	
-glBindTexture(GL_TEXTURE_2D, texture[1]);
-glTranslated(-9.8,7,-12);
-
-
-
-glBegin (GL_QUADS);	
-dinding(1,1,1,1,5,7);
-	/*glTexCoord2f(0.0, 0.0);
-	glVertex3f(1,1,1);
-	glTexCoord2f(1.0, 0.0);
-	glVertex3f(1,5,1);	
-	glTexCoord2f(1.0, 1.0);
-	glVertex3f(1,5,7);	
-	glTexCoord2f(0.0, 1.0);
-	glVertex3f(1,1,7);*/
-glEnd ();
-glPopMatrix();
+	glPushMatrix();	
+		glBindTexture(GL_TEXTURE_2D, texture[1]);
+		glTranslated(-9.8,7,-12);
+		glBegin (GL_QUADS);	
+			dinding(1,1,1,1,5,7);
+		glEnd ();
+	glPopMatrix();
 
 
 	glutSwapBuffers();
