@@ -1,7 +1,7 @@
-﻿Build started 6/25/2012 10:00:27 PM.
+﻿Build started 6/25/2012 10:13:46 PM.
      1>Project "E:\kuliah\semester 8\Grafkom\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\KosanQu.unsuccessfulbuild".
+         Creating "Debug\KosanQu.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
          C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\KosanQu.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt KosanQu.cpp
@@ -27,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.40
+Time Elapsed 00:00:02.02

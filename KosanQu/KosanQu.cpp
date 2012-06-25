@@ -883,8 +883,7 @@ void display(void) {
 		dinding(1,1,1,1,5,7);
 		glEnd ();
 	glPopMatrix();
-
-
+	
 	//jam
 	
 		float alpha, radius, cx, cy;
