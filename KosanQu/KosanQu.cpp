@@ -172,7 +172,20 @@ Image * loadTexture4() {
 	}
 	return image4;
 }
-
+Image * loadTexture6() {
+	Image *image6;
+	// alokasi memmory untuk tekstur
+	image6 = (Image *) malloc(sizeof(Image));
+	if (image6 == NULL) {
+		printf("Error allocating space for image");
+		exit(0);
+	}
+	//pic.bmp is a 64x64 picture
+	if (!ImageLoad("black.bmp", image6)) {
+		exit(1);
+	}
+	return image6;
+}
 
 
 void myinit(void) {
@@ -185,6 +198,7 @@ void myinit(void) {
 	Image *image2 = loadTexture2();
 	Image *image3 = loadTexture3();
 	Image *image4 = loadTexture4();
+	Image *image6 = loadTexture6();
 
 	if (image1 == NULL) {
 		printf("Image was not returned from loadTexture\n");
@@ -202,10 +216,15 @@ void myinit(void) {
 		printf("Image was not returned from loadTexture\n");
 		exit(0);
 	}
+	if (image6 == NULL) {
+		printf("Image was not returned from loadTexture\n");
+		exit(0);
+	}
 
 
 	// Generate texture/ membuat texture
-	glGenTextures(2, texture);
+	
+
 	//binding texture untuk membuat texture 2D
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
 	//menyesuaikan ukuran textur ketika image lebih besar dari texture
@@ -244,6 +263,16 @@ void myinit(void) {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image4->sizeX, image4->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image4->data);
+
+	//tekstur olimpik
+	//binding texture untuk membuat texture 2D
+	glBindTexture(GL_TEXTURE_2D, texture[6]);
+	//menyesuaikan ukuran textur ketika image lebih besar dari texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //
+	//menyesuaikan ukuran textur ketika image lebih kecil dari texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image6->sizeX, image6->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image6->data);
 
 
 	glEnable(GL_TEXTURE_2D);
@@ -752,6 +781,25 @@ void display(void) {
 		glEnd();
 	glPopMatrix();
 
+		//tv
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[6]);
+		glTranslated(11, 3 ,-1.5);
+		glBegin(GL_QUADS);
+		glTexCoord2f(0.0, 0.0);
+		glVertex3f(-9.7,2.3,-0.1);
+		glTexCoord2f(0.0, 1.0);
+		glVertex3f(-5.3,2.3,-0.1);
+		glTexCoord2f(1.0, 1.0);
+		glVertex3f(-5.3,5.1,-0.1);
+		glTexCoord2f(1.0, 0.0);
+		glVertex3f(-9.7,5.1,-0.1);
+		dinding(-10,2,0,-5,5.5,0.3);
+		dinding(-10,3,0,-6.3,3.3,1);
+		
+
+		glEnd();
+	glPopMatrix();
 
 	//laptop
 	glPushMatrix();
@@ -838,7 +886,28 @@ void display(void) {
 	glPopMatrix();
 
 
-	glutSwapBuffers();
+	//jam
+		float alpha, radius, cx, cy;
+		 cx=5;
+		 cy=5;
+		 alpha = 0;
+		 radius = 1;
+		 glTranslated(-8.8,6,-8);
+		 glRotated(90,0,1,0);
+ 
+		 glBegin(GL_POLYGON);
+		 {
+		  for(float i=0; i<=360; i++)
+		  {
+		   alpha+=1;
+		   glBindTexture(GL_TEXTURE_2D, texture[5]);
+		   glVertex2f(radius * cos (alpha/180 * 3.1415) + cx, radius * sin(alpha/180 * 3.1415) + cy);
+		  }
+		 }
+		 glEnd();
+		 glPopMatrix();
+
+		 glutSwapBuffers();
 }
 void myReshape(int w, int h) {
 	glViewport(0, 0, w, h);
