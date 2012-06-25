@@ -122,7 +122,7 @@ Image * loadTexture() {
 		exit(0);
 	}
 	//pic.bmp is a 64x64 picture
-	if (!ImageLoad("water.bmp", image1)) {
+	if (!ImageLoad("zebra.bmp", image1)) {
 		exit(1);
 	}
 	return image1;
