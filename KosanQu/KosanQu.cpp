@@ -13,7 +13,7 @@
 #include <math.h>
 
 
-GLuint texture[2];
+GLuint texture[5];
 
 GLint slices = 16;
 GLint stacks = 16;
@@ -132,7 +132,7 @@ Image * loadTexture2() {
 		exit(0);
 	}
 	//pic.bmp is a 64x64 picture
-	if (!ImageLoad("snsd.bmp", image2)) {
+	if (!ImageLoad("snsd1.bmp", image2)) {
 		exit(1);
 	}
 	return image2;
@@ -168,6 +168,22 @@ Image * loadTexture4() {
 	return image4;
 }
 
+/*
+Image * loadTexture5() {
+	Image *image5;
+	// alokasi memmory untuk tekstur
+	image5 = (Image *) malloc(sizeof(Image));
+	if (image5 == NULL) {
+		printf("Error allocating space for image");
+		exit(0);
+	}
+	//pic.bmp is a 64x64 picture
+	if (!ImageLoad("pemandangan.bmp", image5)) {
+		exit(1);
+	}
+	return image5;
+}
+*/
 Image * loadTexture6() {
 	Image *image6;
 	// alokasi memmory untuk tekstur
@@ -193,6 +209,7 @@ void myinit(void) {
 	Image *image2 = loadTexture2();
 	Image *image3 = loadTexture3();
 	Image *image4 = loadTexture4();
+//	Image *image5 = loadTexture5();
 	Image *image6 = loadTexture6();
 
 	if (image1 == NULL) {
@@ -211,6 +228,10 @@ void myinit(void) {
 		printf("Image was not returned from loadTexture\n");
 		exit(0);
 	}
+/*	if (image5 == NULL) {
+		printf("Image was not returned from loadTexture\n");
+		exit(0);
+	} */
 	if (image6 == NULL) {
 		printf("Image was not returned from loadTexture\n");
 		exit(0);
@@ -219,7 +240,7 @@ void myinit(void) {
 
 	// Generate texture/ membuat texture
 	
-	glGenTextures(9,texture);
+	glGenTextures(5,texture);
 
 	//binding texture untuk membuat texture 2D
 	glBindTexture(GL_TEXTURE_2D, texture[0]);
@@ -260,6 +281,16 @@ void myinit(void) {
 	glTexImage2D(GL_TEXTURE_2D, 0, 3, image4->sizeX, image4->sizeY, 0, GL_RGB,
 			GL_UNSIGNED_BYTE, image4->data);
 
+	/*//tekstur pemandangan
+	//binding texture untuk membuat texture 2D
+	glBindTexture(GL_TEXTURE_2D, texture[5]);
+	//menyesuaikan ukuran textur ketika image lebih besar dari texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); //
+	//menyesuaikan ukuran textur ketika image lebih kecil dari texture
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); //
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, image5->sizeX, image5->sizeY, 0, GL_RGB,
+			GL_UNSIGNED_BYTE, image5->data);
+			*/
 	//tekstur hitam
 	//binding texture untuk membuat texture 2D
 	glBindTexture(GL_TEXTURE_2D, texture[6]);
@@ -873,7 +904,7 @@ void display(void) {
 	glPushMatrix();	
 		glTranslated(-8.8,6,-8);
 		glRotated(90,0,1,0);
-		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		//glBindTexture(GL_TEXTURE_2D, texture[0]);
 		glBegin(GL_POLYGON);
 		for(float i=0; i<=360; i++)
 		{
