@@ -147,7 +147,7 @@ Image * loadTexture3() {
 		exit(0);
 	}
 	//pic.bmp is a 64x64 picture
-	if (!ImageLoad("jamdinding.bmp", image3)) {
+	if (!ImageLoad("wiwid.bmp", image3)) {
 		exit(1);
 	}
 	return image3;
@@ -884,6 +884,26 @@ void display(void) {
 		}
 		glEnd();
 	glPopMatrix();
+
+	//layar laptop
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[2]);
+		glTranslated(11.4, -0.1 ,-18.4);
+		glBegin(GL_QUADS);
+		dinding(-10,3,0,-7,4.7,0.1);
+		glEnd();
+	glPopMatrix();
+
+	
+	//pemandangan jendela
+	glPushMatrix();
+		glBindTexture(GL_TEXTURE_2D, texture[2]);
+		glTranslated(9, 3.2 ,-21.5);
+		glBegin(GL_QUADS);
+		dinding(-10,3,0,-2,11,0.1);
+		glEnd();
+	glPopMatrix();
+	
 
 	glutSwapBuffers();
 }

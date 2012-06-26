@@ -1,5 +1,5 @@
-﻿Build started 26/06/2012 10:45:43.
-     1>Project "D:\Kuliah\Semester 8\Grafika Komputer\Tugas Besar\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" on node 2 (build target(s)).
+﻿Build started 6/26/2012 12:28:37 PM.
+     1>Project "E:\kuliah\semester 8\Grafkom\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\KosanQu.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
@@ -14,8 +14,8 @@
        FinalizeBuildStatus:
          Deleting file "Debug\KosanQu.unsuccessfulbuild".
          Touching "Debug\KosanQu.lastbuildstate".
-     1>Done Building Project "D:\Kuliah\Semester 8\Grafika Komputer\Tugas Besar\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" (build target(s)).
+     1>Done Building Project "E:\kuliah\semester 8\Grafkom\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" (build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.45
+Time Elapsed 00:00:00.07
