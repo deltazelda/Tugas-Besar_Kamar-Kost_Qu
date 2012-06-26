@@ -334,7 +334,7 @@ void keyboard(unsigned char key, int x, int y)
 		//vertikal atas (mengurangi koordinat y)
 		case 'w':
 		b = b + 1;
-		if (b>-3) b=-3;
+		if (b>-2) b=-2;
 		glutPostRedisplay();
 		break;
 		//vertikal bawah (menambah koordinat y)
@@ -358,12 +358,13 @@ void keyboard(unsigned char key, int x, int y)
 		//memperbesar objek (menambah koordinat z)
 		case 'q':
 		c = c + 1;
-		if (c>10) c=10;
+		if (c>15) c=15;
 		glutPostRedisplay();
 		break;
 		//memperkecil abjek(mengurangi koordinat z)
 		case 'e':
 		c = c - 1;
+		if (c<-10) c=-10;
 		glutPostRedisplay();
 		break;
 		//buka pintu
@@ -501,7 +502,7 @@ void dinding(float x1,float y1,float z1,float x2,float y2,float z2)
 
 void timer (int value){
 	if (z <= 360){
-		z +=10;
+		z +=15;
 	}
 	if (z == 360){
 		z =0;
@@ -509,7 +510,6 @@ void timer (int value){
 	glutPostRedisplay();
 	glutTimerFunc(5,timer,0);
 }
-
 
 void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -887,11 +887,12 @@ void display(void) {
 
 	glutSwapBuffers();
 }
+
 void myReshape(int w, int h) {
 	glViewport(0, 0, w, h);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluPerspective(60.0, 1.0 * (GLfloat) w / (GLfloat) h, 1.0, 30.0);
+	gluPerspective(60.0, 1.0 * (GLfloat) w / (GLfloat) h, 1.0, 40.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	glTranslatef(0.0, 0.0, -3.6);
@@ -915,6 +916,7 @@ int main(int argc, char** argv) {
 	glutKeyboardFunc(keyboard);
 	glutMouseFunc(processMouse); 
 	glutTimerFunc(1,timer,0);
+
 	glutMainLoop();
 	return 0;
 }

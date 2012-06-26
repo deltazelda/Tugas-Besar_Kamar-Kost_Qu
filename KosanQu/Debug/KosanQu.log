@@ -1,4 +1,4 @@
-﻿Build started 26/06/2012 2:11:09.
+﻿Build started 26/06/2012 10:29:24.
      1>Project "D:\Kuliah\Semester 8\Grafika Komputer\Tugas Besar\Tugas-Besar_Kamar-Kost_Qu\KosanQu\KosanQu.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\KosanQu.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -27,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.31
+Time Elapsed 00:00:01.37
